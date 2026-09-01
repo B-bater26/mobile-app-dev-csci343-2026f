@@ -19,9 +19,9 @@ export default function App() {
           <Text
           style={styles.text}
           onPress={ () => {
-            Linking.openURL('mailto:baileysprojectsonline@gmail.com');
+            Linking.openURL('mailto:bibaxter@coastal.edu');
           } } >
-            baileysprojectsonline@gmail.com
+            bibaxter@coastal.edu
           </Text>
           <Text 
           style={styles.text}
