@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View, Image} from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Image, Linking} from 'react-native';
 
 export default function App() {
   return (
@@ -13,20 +13,34 @@ export default function App() {
           />
         </View>
         <View style={styles.textContainer}>
-          <Text>
+          <Text style={styles.name}>
             Bailey Baxter
           </Text>
-          <Text>
+          <Text
+          style={styles.text}
+          onPress={ () => {
+            Linking.openURL('mailto:baileysprojectsonline@gmail.com');
+          } } >
             baileysprojectsonline@gmail.com
           </Text>
-          <Text>
+          <Text 
+          style={styles.text}
+          onPress={ () => {
+            Linking.openURL('tel:8435827151');
+          } } 
+          >
             843-582-7151
           </Text>
-          <Text>
+          <Text
+          style={styles.text}
+          onPress={ () => {
+            Linking.openURL('https://github.com/B-bater26');
+          } } 
+          >
             https://github.com/B-bater26
           </Text>
         </View>
-      </SafeAreaView>
+      </SafeAreaView> 
     </>
   );
 }
@@ -36,20 +50,43 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#b0e0e6'
+    backgroundColor: '#000714'
   },
   imageContainer: {
     flex: 2,
-    paddingTop: 150,
+    paddingTop: 200,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center'
   },
   image: {
     width: "100%",
-    height: 300,
+    height: 350,
     resizeMode: 'cover',
-    borderColor: 'black',
+    borderColor: 'white',
     borderWidth: 5
-  }
+  },
+  textContainer: {
+    flex: 7,
+    width: '100%',
+    justifyContent: 'center'
+  },
+  name: {
+    fontSize: 55,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    marginBottom: 100
+  },
+  text: {
+    fontSize: 20,
+    marginBottom: 5,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
+    fontStyle: 'italic',
+    marginBottom: 20
+  } 
 });
