@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Modal, TextInput, Button, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
 
 export default function App() {
   const [userQuestion, setUserQuestion] = useState("");
   const [magicAnswer, setMagicAnswer] = useState("");
-  const [modalIsVisible, setModalIsVisible] = useState("false");
+  const [modalIsVisible, setModalIsVisible] = useState(false);
   
   const responses = [
     "It is certain",
@@ -29,16 +30,19 @@ export default function App() {
     "Very doubtful"
   ];
 
-  // Functions
+  // Functions+
 
   function startMagic() {
-    const randomAnswerIndex = (Math.random(0, length(responses)));
-    let answer = responses[randomAnswerIndex];
-    setMagicAnswer(answer);
-    setModalIsVisible(true);
+    if (userQuestion != "") {
+      const randomAnswerIndex = Math.floor(Math.random() * (responses.length));
+      let answer = responses[randomAnswerIndex];
+      console.log(answer);
+      setMagicAnswer(answer);
+      setModalState(true);
+    }
   }
   
-  function setModalIsVisible(setVisible) {
+  function setModalState(setVisible) {
     setModalIsVisible(setVisible);
   }
   
@@ -64,7 +68,7 @@ export default function App() {
             <TextInput
             style={styles.textInput}
             placeholder="Enter your question"
-            onChangeeText={setUserQuestion}
+            onChangeText={setUserQuestion}
             value={userQuestion}
             keyboardType="default"
             />
@@ -98,7 +102,7 @@ export default function App() {
               <Text style={styles.magicAnswerText}>{magicAnswer}</Text>
             </View>
             <View style={styles.backButtonContainer}>
-              <Button title="Ask Another Question" color="#b82f61f" onPress={() => {}}/>
+              <Button title="Ask Another Question" color="#b42ab4" onPress={() => setModalState(false)}/>
             </View>
           </SafeAreaView>
         </Modal>
@@ -169,7 +173,8 @@ const styles = StyleSheet.create({
     borderRadius: 360,
     borderColor: 'white',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginHorizontal: 20
   },
   magic8BallText: {
     fontSize: 30,
@@ -192,7 +197,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'white',
     textAlign: 'center',
-    marginTop: 20
+    marginTop: 20,
+    fontWeight: 'bold'
   }, 
   textInput: {
     borderWidth: 1,
@@ -202,13 +208,71 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     width: "90%",
     padding: 12,
-    marginBottom: 30
+    marginBottom: 30,
+    marginTop: 10
 
   },
   backButtonContainer : {
+    width: "50%",
+    marginHorizontal: 0,
+    padding: 10,
+    marginTop: 25,
+  },
+  inputQuestionContainer : {
     width: "100%",
-    marginHorizontal: 0
-  }
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20
+  },
+
+
+  youAskedContainer : {
+    width: "100%",
+    alignItems: 'center',
+    color: 'white',
+    marginTop: 50,
+    fontSize: 20,
+    backgroundColor: '#6b2ba7'
+  },
+  youAskedText : {
+    fontSize: 30,
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20
+  },
+  yourQuestionText : {
+    fontSize: 20,
+    color: 'white',
+    textAlign: 'center',
+    marginBottom: 15,
+    fontStyle: 'italic',
+    color: '#ff7bc8'
+  },
+  answerContainer : {
+    width: "100%",
+    alignItems: 'center',
+    backgroundColor: '#6b2ba7'
+  },
+  the8BallSaysText : {
+    fontSize: 30,
+    color: 'white',
+    fontweight: 'bold',
+    textAlign: 'center',
+    marginBottom: 15
+  },
+  magicAnswerText : {
+    fontSize: 45,
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    margin: 35,
+    backgroundColor: 'rgb(54, 0, 202)',
+    borderRadius: 20,
+    borderColor: 'white',
+    borderWidth: 3,
+    padding: 10
+  },
+  
 });
 
-//<Button onPress={ () => {} } title="Ask Question" color="red"/>
