@@ -2,6 +2,46 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  const [userQuestion, setUserQuestion] = useState("");
+  const [magicAnswer, setMagicAnswer] = useState("");
+  const [modalIsVisible, setModalIsVisible] = useState("false");
+  
+  const responses = [
+    "It is certain",
+    "It is decidedly so",
+    "Without a doubt",
+    "Yes definitely",
+    "You may rely on it",
+    "As I see it, yes",
+    "Most likely",
+    "Outlook good",
+    "Yes",
+    "Signs point to yes",
+    "Reply hazy, try again",
+    "Ask again later",
+    "Better not tell you now",
+    "Cannot predict now",
+    "Concentrate and ask again",
+    "Don't count on it",
+    "My reply is no",
+    "My sources say no",
+    "Outlook not so good",
+    "Very doubtful"
+  ];
+
+  // Functions
+
+  function startMagic() {
+    const randomAnswerIndex = (Math.random(0, length(responses)));
+    let answer = responses[randomAnswerIndex];
+    setMagicAnswer(answer);
+    setModalIsVisible(true);
+  }
+  
+  function setModalIsVisible(setVisible) {
+    setModalIsVisible(setVisible);
+  }
+  
   return (
     <>
       <StatusBar style="auto" />
@@ -19,8 +59,15 @@ export default function App() {
             <Text style={styles.magic8BallText}>8</Text>
           </View>
 
-          <View>
-
+          <View style={styles.inputQuestionContainer}>
+            <Text style={styles.inputLabel}>Ask Your Question</Text>
+            <TextInput
+            style={styles.textInput}
+            placeholder="Enter your question"
+            onChangeeText={setUserQuestion}
+            value={userQuestion}
+            keyboardType="default"
+            />
           </View>
 
         </View>
@@ -28,7 +75,7 @@ export default function App() {
         <View style={styles.submitButtonContainer}>
           <Pressable
           android_ripple={{color: '#ba9cd8'}}
-          onPress={ () => {} }
+          onPress={startMagic}
           style = {({pressed}) => pressed && styles.pressedButton}
           >
 
@@ -38,6 +85,23 @@ export default function App() {
 
           </Pressable>
         </View>
+
+
+        <Modal visible={modalIsVisible} animationType="slide">
+          <SafeAreaView style={styles.modalRoot}>
+            <View style={styles.youAskedContainer}>
+              <Text style={styles.youAskedText}>You asked...</Text>
+              <Text style={styles.yourQuestionText}>{userQuestion}</Text>
+            </View>
+            <View style={styles.answerContainer}>
+              <Text style={styles.the8BallSaysText}>The Magic 8 Ball says...</Text>
+              <Text style={styles.magicAnswerText}>{magicAnswer}</Text>
+            </View>
+            <View style={styles.backButtonContainer}>
+              <Button title="Ask Another Question" color="#b82f61f" onPress={() => {}}/>
+            </View>
+          </SafeAreaView>
+        </Modal>
 
 
       </SafeAreaView>
@@ -118,8 +182,33 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '100%',
     backgroundColor: 'white'
+  },
+  modalRoot: {
+    flex: 1,
+    backgroundColor: '#a068d8',
+    alignItems: 'center'
+  },
+  inputLabel: {
+    fontSize: 25,
+    color: 'white',
+    textAlign: 'center',
+    marginTop: 20
+  }, 
+  textInput: {
+    borderWidth: 1,
+    borderColor: '#e5cbff',
+    backgroundColor: '#e5cbff',
+    color: "black",
+    borderRadius: 6,
+    width: "90%",
+    padding: 12,
+    marginBottom: 30
 
   },
+  backButtonContainer : {
+    width: "100%",
+    marginHorizontal: 0
+  }
 });
 
 //<Button onPress={ () => {} } title="Ask Question" color="red"/>
