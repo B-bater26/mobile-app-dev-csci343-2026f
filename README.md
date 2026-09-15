@@ -7,10 +7,8 @@ This repo serves as the collection of completed works and projects for CSCI*343.
 ## Projects
 
 
-### Week 3
+### Week 4
 [Top 10 Movies](Week4/TopMovies)
-
-
 
 ### Week 3
 [Magic 8 Ball](Week3/Magic8Ball)
