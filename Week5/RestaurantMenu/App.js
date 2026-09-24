@@ -2,11 +2,18 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { useFonts } from 'expo-font';
+
+import Colors from "./constants/colors";
 import MenuScreen from './screens/MenuScreen';
 import BaseScreen from './screens/BaseScreen';
 
 
 export default function App() {
+  const {fontsLoaded} = useFonts({
+    "bsans": require("./assets/fonts/BubblegumSans-Regular.ttf"),
+    "bf": require("./assets/fonts/FuzzyBubbles-Regular.ttf")
+  })
   const [currentScreen, setCurrentScreen] = useState("base");
 
   function menuScreenHandler() {
@@ -35,7 +42,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffb68b',
+    backgroundColor: Colors.accent500,
     alignItems: 'center',
     justifyContent: 'center',
   },

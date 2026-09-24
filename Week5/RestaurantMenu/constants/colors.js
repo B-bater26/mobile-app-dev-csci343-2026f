@@ -1,6 +1,7 @@
 const Colors = {
-    accent500: "#7de6f8",
-    primary: '#ffb68b'
+    primary500: "#7de6f8",
+    primaryText: "#00a2ff",
+    accent500: '#ffb68b'
 }
 
 export default Colors;

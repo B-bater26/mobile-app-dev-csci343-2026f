@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, Linking, Button } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Title from "../components/Title"
+import Title from "../components/Title";
+import Colors from "../constants/colors";
 
 export default function BaseScreen(props) {
     const insets = useSafeAreaInsets();
@@ -45,7 +46,7 @@ export default function BaseScreen(props) {
         </View>
 
         <View style={styles.buttonContainer}>
-            <Button title="View Menu" onPress={props.onNext} />
+            <Button title="View Menu" onPress={props.onNext} color={Colors.primaryText}/>
         </View>
 
     </View>
@@ -79,7 +80,9 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 30,
     textAlign: "center",
-    padding: 7
+    padding: 7,
+    fontFamily: "bsans",
+    color: Colors.primaryText
   },
   buttonContainer: {
     flex: 1,
@@ -89,6 +92,4 @@ const styles = StyleSheet.create({
     marginRight: 100,
     marginLeft: 100
   },
-  button: { 
-  }
 });

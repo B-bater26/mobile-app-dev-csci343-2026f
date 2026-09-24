@@ -1,4 +1,5 @@
 import {Text, View, Image, StyleSheet} from "react-native";
+import Colors from "../constants/colors";
 
 export default function MenuItem(props) {
     return (
@@ -24,11 +25,13 @@ const styles = StyleSheet.create({
     titleContainer: {
         borderWidth: 3,
         borderRadius: 5,
-        backgroundColor: "#7de6f8"
+        backgroundColor: Colors.primary500
     },
     title : {
         fontSize: 30,
-        textAlign: "center"
+        textAlign: "center",
+        fontFamily: "bsans",
+        padding: 5
     },
     imageContainer: {
         alignItems: "center",
@@ -44,10 +47,13 @@ const styles = StyleSheet.create({
     descContainer: {
         borderWidth: 3,
         borderRadius: 5,
-        backgroundColor: "#7de6f8"
+        backgroundColor: Colors.primary500,
+        padding: 2
+        
     },
     desc: {
         fontSize: 25,
-        textAlign: "center"
+        textAlign: "center",
+        fontFamily: "bf"
     }
 })

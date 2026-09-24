@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, Image, FlatList, Button } from 'react-native';
 import { useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Title from "../components/Title"
-import MenuItem from "../components/MenuItems"
+import Title from "../components/Title";
+import MenuItem from "../components/MenuItems";
+import Colors from "../constants/colors";
 
 export default function MenuScreen(props) {
 
@@ -10,13 +11,13 @@ export default function MenuScreen(props) {
         {
             name: "Nachos - $14.99",
             image: require("../assets/images/nachos.jpg"),
-            desc: "Corn tortilla chip nachos served\nwith queso and cheddar jack cheese.\nYour choice of Grilled Shrimp or Chicken",
+            desc: "Corn tortilla chip nachos\nserved with queso and cheddar jack cheese.\nYour choice of Grilled Shrimp or Chicken",
             id: 1
         },
         {
             name: "Tacos! - $18.99",
             image: require("../assets/images/tacos.jpg"),
-            desc: "Three soft flour shells with Montery\n Cheddar Jack Cheese, Pico de Gallo,\n and Tortilla chips.",
+            desc: "Three soft flour shells with\nMontery Cheddar Jack Cheese, Pico de Gallo,\n and Tortilla chips.",
             id: 2
         },
         {
@@ -75,7 +76,7 @@ export default function MenuScreen(props) {
         </View>
 
         <View style={styles.buttonContainer}>
-            <Button title="Main Menu" onPress={props.onNext} />
+            <Button title="Main Menu" onPress={props.onNext} color={Colors.primaryText}/>
         </View>
 
     </View>
@@ -85,7 +86,7 @@ export default function MenuScreen(props) {
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    backgroundColor: '#ffb68b',
+    backgroundColor: Colors.accent500,
   },
   titleContainer: {
     flex: 1,
