@@ -1,19 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import MenuScreen from './screens/MenuScreen';
+import BaseScreen from './screens/BaseScreen';
+
 
 export default function App() {
+  const [currentScreen, setCurrentScreen] = useState("base");
+
+  function menuScreenHandler() {
+    setCurrentScreen("menu")
+  }
+
+  function baseScreenHandler() {
+    setCurrentScreen("base")
+  }
+
+  let screen = <BaseScreen onNext={menuScreenHandler}/>;
+
+  if (currentScreen == "menu") {
+    screen = <MenuScreen onNext={baseScreenHandler}/>
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style="light" />
+      <SafeAreaProvider style={styles.container}>{screen}</SafeAreaProvider>
+    </>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffb68b',
     alignItems: 'center',
     justifyContent: 'center',
   },
