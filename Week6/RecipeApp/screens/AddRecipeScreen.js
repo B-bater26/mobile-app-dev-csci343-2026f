@@ -3,16 +3,13 @@ import NavButton from '../components/NavButton';
 
 
 
-export default function RecipeScreen(props) {
+export default function AddeRecipeScreen(props) {
   return (
     <View style={styles.container}>
-      <Text>This is Recipe Screen</Text>
+      <Text>This is Add Recipe Screen</Text>
 
       <View>
-        <NavButton onNext={props.onHome}>Return Home</NavButton>
-      </View>
-      <View>
-        <NavButton onNext={props.onAdd}>Add New Recipe</NavButton>
+        <NavButton onNext={props.onCancel}>Cancel</NavButton>
       </View>
     </View>
   );
