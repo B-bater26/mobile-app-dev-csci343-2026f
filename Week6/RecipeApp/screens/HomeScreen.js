@@ -3,7 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Colors from "../constants/colors";
 
 import NavButton from '../components/NavButton';
-import Title from "../components/Title"
+import Title from "../components/Title";
 
 
 export default function HomeScreen(props) {
@@ -33,7 +33,7 @@ export default function HomeScreen(props) {
         </View>
 
         <View style={styles.navButtonContainer}>
-            <NavButton onNext={props.onNext}>Go to Notes</NavButton>
+            <NavButton onNext={props.onNext}>Go to Recipes</NavButton>
         </View>
     </View>
     

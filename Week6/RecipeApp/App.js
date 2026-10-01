@@ -12,7 +12,9 @@ import Colors from "./constants/colors";
 export default function App() {
   const [fontsLoaded] = useFonts ({
     cursive1: require("./assets/fonts/Cursive1.ttf"),
-    fuzzy: require("./assets/fonts/Fuzzy.ttf")
+    fuzzy: require("./assets/fonts/Fuzzy.ttf"),
+    recipes: require("./assets/fonts/NotePaper-regular.otf"),
+    recipeTitle: require("./assets/fonts/BebasNote-Bold.ttf")
   });
 
   const [currentScreen, setCurrentScreen] = useState("");
@@ -25,7 +27,7 @@ export default function App() {
     },
     {
       id: 2,
-      title: "Toast",
+      title: "Breakfast Toast",
       text: "\nIngredients:\nSlice of Bread\nButter\nToaster\n\nInstructions:\nPut bread in toaster\nTurn on toaster\nWait for toast\nPut butter on toast"
     },
     {
