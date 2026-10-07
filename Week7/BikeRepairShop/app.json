@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "BikeRepairShop",
+    "slug": "BikeRepairShop",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/bikesplash.jpg",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/bikesplash.jpg",
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#000000",
+        "foregroundImage": "./assets/images/bikesplash.jpg",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/bikesplash.jpg"
+    }
+  }
+}
