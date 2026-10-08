@@ -117,6 +117,10 @@ export default function App() {
 
     price += repairTimeRadioButtons[repairTimeId].price;
 
+    if (rentalMembership){
+        price += 100;
+    }
+
     setCurrentPrice(price);
     setCurrentScreen("review");
     setNewsletter(false);

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Switch } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Switch, ImageBackground } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { RadioGroup } from "react-native-radio-buttons-group";
 import BouncyCheckBox from "react-native-bouncy-checkbox";
@@ -10,114 +10,124 @@ import NavButton from "../components/NavButton";
 export default function HomeScreen(props) {
     const insets = useSafeAreaInsets();
     return (
-        <View
-            style={[
-                styles.container,
-                { 
-                    paddingTop: insets.top,
-                    paddingBottom: insets.bottom,
-                    paddingLeft: insets.left,
-                    paddingRight: insets.right
-                }
-            ]}
+        <ImageBackground
+            source={require("../assets/images/bikeshopbg.jpg")}
+            resizeMode="cover"
+            style={styles.container}
+            imageStyle={styles.backgroundImage}
         >
-            <View style={styles.titleContainer}>
-                <Title>Bailey's Bike Repair</Title>
+            <View
+                style={[
+                    styles.container,
+                    { 
+                        paddingTop: insets.top,
+                        paddingBottom: insets.bottom,
+                        paddingLeft: insets.left,
+                        paddingRight: insets.right
+                    }
+                ]}
+            >
+                <View style={styles.titleContainer}>
+                    <Title>Bailey's Bike Repair</Title>
+                </View>
+
+                <ScrollView style={styles.scrollContainer}>
+
+                    
+                    <View style={styles.radioContainer}>
+                        <Text style={styles.radioHeader}>Service Time:</Text>
+                        <RadioGroup
+                            radioButtons={props.repairTimeRadioButtons}
+                            onPress={props.onSetRepairId}
+                            selectedId={props.repairTimeId}
+                            layout="row"
+                            containerStyle={styles.radioGroup}
+                            labelStyle={styles.radioGroupLabel}
+                        >
+                        </RadioGroup>
+                    </View>
+
+                    <View style={styles.rowContainer}>
+                        <View style={styles.checkBoxContainer}>
+                            <Text style={styles.checkBoxHeader}>Services:</Text>
+
+                            <View style={styles.checkBoxSubContainer}>
+                                {
+                                    props.services.map((item) => (
+                                        <BouncyCheckBox
+                                        key={item.id}
+                                        text={item.name}
+                                        onPress={props.onSetServices.bind(this, item.id)}
+                                        textStyle={{
+                                            textDecorationLine: "none",
+                                            color: Colors.primary500,
+                                            fontFamily: "Bubble",
+                                            fontSize: 18
+                                        }}
+                                        innerIconStyle={{
+                                            borderRadius: 0,
+                                            borderColor: Colors.primary500
+                                        }}
+                                        iconStyle={{borderRadius: 0}}
+                                        fillColor={ Colors.primary500 }
+                                        style={styles.checkBox}
+                                        />
+                                    ))
+                                }
+                            </View>
+                        </View>
+                    </View>
+
+                    <View style={styles.rowContainer}>
+                        <View style={styles.signUpContainer}>
+                            <View style={styles.switchContainer}>
+                                <Text style={styles.switchLabel}>Sign Up for Our News Letter? </Text>
+                                <Switch
+                                    onValueChange={props.onSetNewsletter}
+                                    value={props.newsletter}
+                                    thumbColor={
+                                        props.newsletter ? Colors.primary500 : Colors.primary800
+                                    }
+                                    trackColor={{false: "#767577", true: "#d2ddf0"}}
+                                />
+                            </View>
+                            <View style={styles.switchContainer}>
+                                <Text style={styles.switchLabel}>Sign Up for Our Rental Membership? </Text>
+                                <Switch
+                                    onValueChange={props.onSetRentalMembership}
+                                    value={props.rentalMembership}
+                                    thumbColor={
+                                        props.rentalMembership ? Colors.primary500 : Colors.primary800
+                                    }
+                                    trackColor={{false: "#767577", true: "#d2ddf0"}}
+                                />
+                            </View>
+                        </View>
+                    </View>
+
+                    <View style={styles.buttonContainer}>
+                        <NavButton onNext={props.onNext}>
+                            Submit Order
+                        </NavButton>
+                    </View>
+
+                </ScrollView>
+
+
             </View>
-
-            <ScrollView style={styles.scrollContainer}>
-
-                
-                <View style={styles.radioContainer}>
-                    <Text style={styles.radioHeader}>Service Time:</Text>
-                    <RadioGroup
-                        radioButtons={props.repairTimeRadioButtons}
-                        onPress={props.onSetRepairId}
-                        selectedId={props.repairTimeId}
-                        layout="row"
-                        containerStyle={styles.radioGroup}
-                        labelStyle={styles.radioGroupLabel}
-                    >
-                    </RadioGroup>
-                </View>
-
-                <View style={styles.rowContainer}>
-                    <View style={styles.checkBoxContainer}>
-                        <Text style={styles.checkBoxHeader}>Services:</Text>
-
-                        <View style={styles.checkBoxSubContainer}>
-                            {
-                                props.services.map((item) => (
-                                    <BouncyCheckBox
-                                    key={item.id}
-                                    text={item.name}
-                                    onPress={props.onSetServices.bind(this, item.id)}
-                                    textStyle={{
-                                        textDecorationLine: "none",
-                                        color: Colors.primary500,
-                                        fontFamily: "Bubble",
-                                        fontSize: 18
-                                    }}
-                                    innerIconStyle={{
-                                        borderRadius: 0,
-                                        borderColor: Colors.primary500
-                                    }}
-                                    iconStyle={{borderRadius: 0}}
-                                    fillColor={ Colors.primary500 }
-                                    style={styles.checkBox}
-                                    />
-                                ))
-                            }
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.rowContainer}>
-                    <View style={styles.signUpContainer}>
-                        <View style={styles.switchContainer}>
-                            <Text style={styles.switchLabel}>Sign Up for Our News Letter? </Text>
-                            <Switch
-                                onValueChange={props.onSetNewsletter}
-                                value={props.newsletter}
-                                thumbColor={
-                                    props.newsletter ? Colors.primary500 : Colors.primary800
-                                }
-                                trackColor={{false: "#767577", true: "#d2ddf0"}}
-                            />
-                        </View>
-                        <View style={styles.switchContainer}>
-                            <Text style={styles.switchLabel}>Sign Up for Our Rental Membership? </Text>
-                            <Switch
-                                onValueChange={props.onSetRentalMembership}
-                                value={props.rentalMembership}
-                                thumbColor={
-                                    props.rentalMembership ? Colors.primary500 : Colors.primary800
-                                }
-                                trackColor={{false: "#767577", true: "#d2ddf0"}}
-                            />
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.buttonContainer}>
-                    <NavButton onNext={props.onNext}>
-                        Submit Order
-                    </NavButton>
-                </View>
-
-            </ScrollView>
-
-
-        </View>
+        </ImageBackground>
+        
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.accent500,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    backgroundImage: {
+        opacity: 0.2
     },
     titleContainer: {
         margin: 15,
