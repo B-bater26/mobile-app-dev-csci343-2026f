@@ -1,4 +1,5 @@
 import { Text, View, Pressable, StyleSheet } from "react-native";
+import Colors from "../constants/colors";
 
 export default function Title(props) {
     return <Text style={styles.title}>{props.children}</Text>;
@@ -6,12 +7,12 @@ export default function Title(props) {
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 45,
+        fontSize: 40,
         color: Colors.primary300,
         textShadowColor: Colors.accent500,
         textShadowRadius: 25,
         textAlign: 'center',
-        fontFamily: "cursive1",
-        padding: 1
+        fontFamily: "TitleFont",
+        padding: 3
     }
 })

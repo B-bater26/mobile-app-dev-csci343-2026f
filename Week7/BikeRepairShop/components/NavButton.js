@@ -1,5 +1,5 @@
 import { Text, View, Pressable, StyleSheet } from "react-native";
-
+import Colors from "../constants/colors";
 
 
 export default function NaVButton(props) {
@@ -23,19 +23,20 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         height: 75,
-        width: 150,
+        width: 300,
         margin: 8,
         borderRadius: 6,
-        backgroundColor: Colors.accent500
+        backgroundColor: Colors.primary500,
+        borderWidth: 2,
     },
     pressedItem: {
         opacity: 0.8
     },
     text: {
         padding: 1,
-        fontSize: 25,
+        fontSize: 45,
         textAlign: "center",
-        fontFamily: "fuzzy",
+        fontFamily: "Bubble",
         color: Colors.primary300
     }
 })

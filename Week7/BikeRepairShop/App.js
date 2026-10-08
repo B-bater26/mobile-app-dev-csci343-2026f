@@ -1,7 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { useState, useMemo, useEffect } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import * as SplashScreen from "expo-splash-screen"; 
+import * as Font from "expo-font";
+
+
+import Colors from "./constants/colors";
+import HomeScreen from "./screens/HomeScreen";
+
+SplashScreen.preventAutoHideAsync();
+SplashScreen.setOptions({
+  duration: 3000,
+  fade: true
+});
+
 
 export default function App() {
+  const [loaded] = Font.useFonts({
+    Bubble: require("./assets/fonts/Bubble.ttf"),
+    TitleFont: require("./assets/fonts/TitleFont.ttf")
+  });
+
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded]);
+
+  
+  
   const [currentScreen, setCurrentScreen] = useState("");
   const [currentPrice, setCurrentPrice] = useState(0);
 
@@ -16,7 +44,7 @@ export default function App() {
         color: Colors.primary500,
       },
       {
-        id: "1",
+        id: "1",    
         label: "Expedited",
         value: "Expedited",
         price: 50,
@@ -51,18 +79,88 @@ export default function App() {
   const [newsletter, setNewsletter] = useState(false);
   const [rentalMembership, setRentalMembership] = useState(false);
 
+  function setServicesHandler(id) {
+    setServices((prevServices) =>
+      prevServices.map((item) =>
+        item.id === id ? { ...item, value: !item.value } : item
+      )
+    );
+  }
+
+  function setNewsletterHandler() {
+    setNewsletter((previous) => !previous);
+  }
+
+  function setRentalMembershipHandler() {
+    setRentalMembership((previous) => !previous);
+  }
+
+  function homeScreenHandler() {
+    setCurrentPrice(0);
+    setCurrentScreen("");
+  }
+
+  function orderReviewHandler() {
+    let price = 0;
+    for (let i = 0; i < services.length; i++) {
+      if (services[i].value){
+        price += price + services[i].price;
+      }
+    }
+
+    price += repairTimeRadioButtons[repairTimeId].price;
+
+    setCurrentPrice(price);
+    setCurrentScreen("review")
+  }
+
+  let screen = (
+
+    <HomeScreen
+      repairTimeId = {repairTimeId}
+      services={services}
+      newsletter={newsletter}
+      rentalMembership={rentalMembership}
+      repairTimeRadioButtons={repairTimeRadioButtons}
+      onSetRepairId={setRepairTimeId}
+      onSetServices={setServicesHandler}
+      onSetNewsletter={setNewsletterHandler}
+      onSetRentalMembership={setRentalMembershipHandler}
+      onNext={orderReviewHandler}
+    />
+  )
+
+  if (currentScreen === "review") {
+    screen = (
+      <OrderReviewScreen
+        repairTime={repairTimeRadioButtons[repairTimeId].value}
+        services={services}
+        newsletter={newsletter}
+        rentalMembership={rentalMembership}
+        currentPrice={currentPrice}
+        onNext={homeScreenHandler}
+
+      />
+    )
+  }
+
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style="light" />
+      <SafeAreaProvider style={styles.container}>{screen}</SafeAreaProvider>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.accent500,
     alignItems: 'center',
     justifyContent: 'center',
   },
