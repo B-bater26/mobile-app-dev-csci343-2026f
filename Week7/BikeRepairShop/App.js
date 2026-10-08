@@ -8,6 +8,7 @@ import * as Font from "expo-font";
 
 import Colors from "./constants/colors";
 import HomeScreen from "./screens/HomeScreen";
+import OrderReviewScreen from "./screens/OrderReviewScreen";
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
@@ -98,20 +99,29 @@ export default function App() {
   function homeScreenHandler() {
     setCurrentPrice(0);
     setCurrentScreen("");
+    setRepairTimeId(0);
+    setServices((prevServices) =>
+      prevServices.map((item) =>
+        true ? { ...item, value: false } : item
+      )
+    );
   }
 
   function orderReviewHandler() {
     let price = 0;
     for (let i = 0; i < services.length; i++) {
       if (services[i].value){
-        price += price + services[i].price;
+        price += services[i].price;
       }
     }
 
     price += repairTimeRadioButtons[repairTimeId].price;
 
     setCurrentPrice(price);
-    setCurrentScreen("review")
+    setCurrentScreen("review");
+    setNewsletter(false);
+    setRentalMembership(false);
+    
   }
 
   let screen = (
@@ -137,7 +147,7 @@ export default function App() {
         services={services}
         newsletter={newsletter}
         rentalMembership={rentalMembership}
-        currentPrice={currentPrice}
+        price={currentPrice}
         onNext={homeScreenHandler}
 
       />

@@ -100,7 +100,7 @@ export default function HomeScreen(props) {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <NavButton onPress={props.onNext}>
+                    <NavButton onNext={props.onNext}>
                         Submit Order
                     </NavButton>
                 </View>
