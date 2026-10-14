@@ -1,10 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet } from "react-native";
+import { useEffect } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import * as Font from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+
+import Colors from "./constants/colors";
+import HomeScreen from "./screens/HomeScreen";
+
+SplashScreen.preventAutoHideAsync();
+SplashScreen.setOptions({
+  duration: 3000,
+  fade: true,
+});
 
 export default function App() {
   const [loaded] = Font.useFonts({
-    Bubble: require("./assets/fonts/Bubble.ttf"),
-    TitleFont: require("./assets/fonts/TitleFont.ttf")
+    Mountain: require("./assets/fonts/Mountain.ttf"),
+    Text: require("./assets/fonts/Text.ttf"),
   });
 
   useEffect(() => {
@@ -12,20 +25,26 @@ export default function App() {
       SplashScreen.hideAsync();
     }
   }, [loaded]);
-  
+
+  if (!loaded) {
+    return null;
+  }
+
+  let screen = <HomeScreen />;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style="light" />
+      <SafeAreaProvider style={styles.container}>{screen}</SafeAreaProvider>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: Colors.accent300,
   },
 });
+
+// I figured out how to use Prettier, which is why everything is now formatted nicely.
