@@ -18,12 +18,12 @@ export default function VacationOverviewScreen(props) {
   function renderDestionationItem(itemData) {
     const destinationItemProps = {
       name: itemData.item.name,
-      avgerageCost: itemData.item.avgerageCost,
+      averageCost: itemData.item.averageCost,
       foundedYear: itemData.item.foundedYear,
       rating: itemData.item.rating,
       description: itemData.item.description,
       imageUrl: itemData.item.imageUrl,
-      listindex: itemData.item.listindex,
+      listIndex: itemData.index,
     };
     return <DestinationItem {...destinationItemProps} />;
   }

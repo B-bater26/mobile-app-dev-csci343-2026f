@@ -4,7 +4,7 @@ const Colors = {
   accent500: "hsl(147, 73%, 65%)",
   accent800: "rgb(146, 179, 179)",
   primary300: "rgb(255, 255, 255)",
-  primary500: "rgb(211, 197, 3)",
+  primary500: "rgb(255, 187, 0)",
   primary800: "rgb(119, 111, 1)",
 };
 

@@ -4,7 +4,7 @@ import { Text } from "react-native";
 import Colors from "../constants/colors";
 
 
-export default function StateGridTile(props) {
+export default function CountryGridTile(props) {
   return (
     <View style={styles.gridItem}>
       <Pressable
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 0,
-        overflow: Platform.OS === "andriod" ? "hidden" : "visibile"
+        overflow: Platform.OS === "android" ? "hidden" : "visible"
     },
     button: {
         flex: 1

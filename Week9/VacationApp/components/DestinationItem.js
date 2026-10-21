@@ -26,7 +26,7 @@ export default function DestinationItem(props) {
           pressed ? styles.buttonPressed : null,
         ]}
         android_ripple={{ color: "#ccc" }}
-        onPress={props.onPress}
+        onPress={viewImageHandler}
       >
         <View style={styles.rowContainer}>
           <Image style={styles.image} source={{ uri: props.imageUrl }} />
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     width: "85%",
-    padddingLeft: 20,
+    paddingLeft: 20,
   },
   name: {
     fontWeight: "bold",
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   year: {
     fontSize: 14,
     fontWeight: "bold",
+    width: "50%"
   },
   innerRowContainer: {
     width: "85%",
