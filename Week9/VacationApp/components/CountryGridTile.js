@@ -1,16 +1,18 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Pressable, View, StyleSheet } from "react-native";
+import { Pressable, View, StyleSheet, Platform } from "react-native";
+import { Text } from "react-native";
 import Colors from "../constants/colors";
+
 
 export default function StateGridTile(props) {
   return (
     <View style={styles.gridItem}>
       <Pressable
-        style={({ presssed }) => [
+        style={({ pressed }) => [
           styles.button,
           pressed ? styles.buttonPressed : null,
         ]}
-        andriod_ripple={{ color: "#ccc" }}
+        android_ripple={{ color: "#ccc" }}
         onPress={props.onPress}
       >
         <LinearGradient
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     },
     title: {
         textAlign: "center",
-        fontSize: 3,
-        fontFamily: "Text"
+        fontSize: 30,
+        fontFamily: "Vacation"
     }
 })

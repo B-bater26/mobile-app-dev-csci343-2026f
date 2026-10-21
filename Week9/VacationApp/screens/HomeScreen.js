@@ -1,4 +1,6 @@
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
+import CountryGridTile from "../components/CountryGridTile";
+import { COUNTRIES } from "../data/dummy-data";
 
 export default function HomeScreen(props) {
   function renderCountryItem(itemData) {
@@ -18,7 +20,12 @@ export default function HomeScreen(props) {
   }
   return (
     <View>
-        
+        <FlatList
+        data={COUNTRIES}
+        keyExtractor={(item) => {return item.id;}}
+        renderItem={renderCountryItem}
+        numColumns={2}
+        />
     </View>
   );
 }
