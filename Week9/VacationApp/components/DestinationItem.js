@@ -45,11 +45,15 @@ export default function DestinationItem(props) {
             <Text style={styles.rating}>Rating: {props.rating}/5</Text>
           </View>
         </View>
+        <View style={styles.descBox}>
+          <Text style={styles.desc}>{props.description}</Text>
+        </View>
       </Pressable>
 
       <ImageViewModal
         isVisible={modalIsVisibile}
         imageUrl={props.imageUrl}
+        stringVal={props.stringVal}
         onClose={closeImageHandler}
       />
     </View>
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
   year: {
     fontSize: 14,
     fontWeight: "bold",
-    width: "50%"
+    width: "50%",
   },
   innerRowContainer: {
     width: "85%",
@@ -106,5 +110,13 @@ const styles = StyleSheet.create({
   rating: {
     fontSize: 13,
     fontStyle: "italic",
+  },
+  descBox: {
+    flex: 1,
+  },
+  desc: {
+    fontSize: 12,
+    padding: 3,
+    marginBottom: 3,
   },
 });

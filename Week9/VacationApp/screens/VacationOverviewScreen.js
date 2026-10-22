@@ -24,6 +24,7 @@ export default function VacationOverviewScreen(props) {
       description: itemData.item.description,
       imageUrl: itemData.item.imageUrl,
       listIndex: itemData.index,
+      stringVal: itemData.item.stringVal
     };
     return <DestinationItem {...destinationItemProps} />;
   }

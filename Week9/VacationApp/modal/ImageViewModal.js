@@ -1,4 +1,5 @@
-import { Modal, View, Button, Image, StyleSheet } from "react-native";
+import { Modal, View, Button, Image, StyleSheet, Text } from "react-native";
+import Colors from "../constants/colors";
 
 function ImageViewModal(props) {
   return (
@@ -10,6 +11,9 @@ function ImageViewModal(props) {
       >
         <View style={styles.modalContainer}>
           <Image style={styles.image} source={{ uri: props.imageUrl }} />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>{props.stringVal}</Text>
+          </View>
           <Button title="Return to Destinations" onPress={props.onClose} />
         </View>
       </Modal>
@@ -36,4 +40,19 @@ const styles = StyleSheet.create({
     height: "80%",
     resizeMode: "contain",
   },
+  textContainer: {
+    flex: 1,
+  },
+  text: {
+    fontSize: 15,
+    padding: 5,
+    fontWeight: "bold",
+    color: Colors.primary300,
+    alignContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    justifyContent: "center"
+    
+  }
+
 });
