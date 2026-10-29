@@ -24,6 +24,10 @@
     },
     "web": {
       "favicon": "./assets/images/news-splash.jpg"
-    }
+    },
+    "plugins": [
+      "expo-font",
+      "expo-splash-screen"
+    ]
   }
 }

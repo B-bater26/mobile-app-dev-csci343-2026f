@@ -1,18 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
+import List from "../components/List/List";
+import NewsItem from "../components/List/NewsItem";
+import { NEWS } from "../data/dummy_data";
 
-export default function TechNewsScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Tech News Screen</Text>
-    </View>
-  );
+export default function USNewsScreen() {
+  const category = "tech";
+  const displayedNews = NEWS.filter((NewsItem) => {
+    return NewsItem.category === category;
+  })
+  return <List items={displayedNews} />
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

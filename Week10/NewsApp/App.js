@@ -14,6 +14,11 @@ import BookmarkScreen from "./screens/BookmarkScreen";
 import USNewsScreen from "./screens/USNewsScreen";
 import WorldNewsScreen from "./screens/WorldNewsScreen";
 import TechNewsScreen from "./screens/TechNewsScreen";
+import {
+  Entypo,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
@@ -25,54 +30,106 @@ const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tabs = createBottomTabNavigator();
 
-function DrawerNavigator(){
+function DrawerNavigator() {
   return (
     <Drawer.Navigator
-    initialRouteName="News"
-    screenOptions={{
-      headerStyle: { backgroundColor: Colors.primary500},
-      headerTintColor: "white",
-      headerTitleStyle: {
-        fontFamily: "Normal",
-        fontSize: 40,
-        color: Colors.accent800
-      },
-      sceneContainerStyle: { backgroundColor: Colors.primary300 },
-      drawerContentStyle: { backgroundColor: Colors.primary500 },
-      drawerInactiveTintColor: Colors.primary300,
-      drawerActiveTintColor: Colors.accent300,
-      drawerActiveBackgroundColor: Colors.primary800
-    }}>
+      initialRouteName="News"
+      screenOptions={{
+        headerStyle: { backgroundColor: Colors.primary500 },
+        headerTintColor: "white",
+        headerTitleStyle: {
+          fontFamily: "Normal",
+          fontSize: 40,
+          color: Colors.accent800,
+        },
+        sceneContainerStyle: { backgroundColor: Colors.primary300 },
+        drawerContentStyle: { backgroundColor: Colors.primary500 },
+        drawerInactiveTintColor: Colors.primary300,
+        drawerActiveTintColor: Colors.accent300,
+        drawerActiveBackgroundColor: Colors.primary800,
+      }}
+    >
       <Drawer.Screen
-      name="News"
-      component={TabsNavigator}
+        name="News"
+        component={TabsNavigator}
+        options={{
+          title: "All News",
+          drawerLabel: "News Articles",
+          drawerIcon: ({ color, size }) => (
+            <Entypo name="list" color={color} size={size} />
+          ),
+        }}
       />
 
-  
       <Drawer.Screen
-      name="BookmarkedList"
-      component={BookmarkScreen}
+        name="BookmarkedList"
+        component={BookmarkScreen}
+        options={{
+          title: "Saved News",
+          drawerLabel: "Saved News",
+          drawerIcon: ({ color, size }) => (
+            <Entypo name="bookmark" color={color} size={size} />
+          ),
+        }}
       />
-
     </Drawer.Navigator>
-  )
+  );
 }
 
-function TabsNavigator(){
+function TabsNavigator() {
   return (
-    <Tabs.Navigator>
-      <Tabs.Screen 
-      name="USNews"
-      component={USNewsScreen}/>
-      <Tabs.Screen 
-      name="WorldNews"
-      component={WorldNewsScreen}/>
-      <Tabs.Screen 
-      name="TechNews"
-      component={TechNewsScreen}/>
-
+    <Tabs.Navigator
+      screenOptions={{
+        tabBarShowLabel: true,
+        tabBarActiveBackgroundColor: "rgba(205, 206, 206, 0.76)",
+        tabBarActiveTintColor: Colors.accent300,
+        tabBarInactiveBackgroundColor: Colors.primary500,
+        tabBarInactiveTintColor: Colors.primary300,
+        tabBarLabelStyle: {
+          fontSize: 12,
+          color: "white",
+        },
+        tabBarStyle: {
+          backgroundColor: Colors.primary500,
+          color: "white",
+        },
+      }}
+    >
+      <Tabs.Screen
+        name="USNews"
+        component={USNewsScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="home" color={color} size={size} />
+          ),
+          tabBarLabel: "US News",
+        }}
+      />
+      <Tabs.Screen
+        name="WorldNews"
+        component={WorldNewsScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="globe" color={color} size={size} />
+          ),
+          tabBarLabel: "World News",
+        }}
+      />
+      <Tabs.Screen
+        name="TechNews"
+        component={TechNewsScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="classic-computer" color={color} size={size} />
+          ),
+          tabBarLabel: "Tech News",
+        }}
+      />
     </Tabs.Navigator>
-  )
+  );
 }
 
 export default function App() {
@@ -96,24 +153,25 @@ export default function App() {
       <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator
-        initialRouteName="DrawerScreen"
-        screenOptions={{
-          headerTintColor: Colors.primary300,
-          headerStyle: { backgroundColor: Colors.primary500 },
-          contentStyle: { backgroundColor: "black"}
-        }}>
-          <Stack.Screen 
-          name="DrawerScreen"
-          component={DrawerNavigator}
-          options={{
-            headerShown: false
-          }}/>
-          <Stack.Screen 
-          name="NewsDetail"
-          component={NewsDetailScreen}
-          options={{
-            headerShown: false
-          }}/>
+          initialRouteName="DrawerScreen"
+          screenOptions={{
+            headerTintColor: Colors.primary300,
+            headerStyle: { backgroundColor: Colors.primary500 },
+            contentStyle: { backgroundColor: "black" },
+          }}
+        >
+          <Stack.Screen
+            name="DrawerScreen"
+            component={DrawerNavigator}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="NewsDetail"
+            component={NewsDetailScreen}
+            
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
