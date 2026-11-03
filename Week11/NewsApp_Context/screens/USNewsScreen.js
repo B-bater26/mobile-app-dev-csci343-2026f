@@ -3,10 +3,10 @@ import NewsItem from "../components/List/NewsItem";
 import { NEWS } from "../data/dummy_data";
 
 export default function USNewsScreen() {
+  // Set up screen and filter news
   const category = "us";
   const displayedNews = NEWS.filter((NewsItem) => {
     return NewsItem.category === category;
-  })
-  return <List items={displayedNews} />
+  });
+  return <List items={displayedNews} />;
 }
-

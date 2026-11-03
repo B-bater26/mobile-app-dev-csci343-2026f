@@ -21,16 +21,19 @@ import WorldNewsScreen from "./screens/WorldNewsScreen";
 import TechNewsScreen from "./screens/TechNewsScreen";
 import FavoriteContextProvider from "./store/context/bookmarks-context";
 
+// Splash screen set up to prevent auto hide async
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
   duration: 3000,
   fade: true,
 });
 
+// Navigation elements
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tabs = createBottomTabNavigator();
 
+// Drawer function for navigation between news and benchmark
 function DrawerNavigator() {
   return (
     <Drawer.Navigator
@@ -77,6 +80,7 @@ function DrawerNavigator() {
   );
 }
 
+// Tabs for navigation between news types
 function TabsNavigator() {
   return (
     <Tabs.Navigator
@@ -124,7 +128,7 @@ function TabsNavigator() {
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="classic-computer" color={color} size={size} />
+            <MaterialIcons name="computer" color={color} size={size} />
           ),
           tabBarLabel: "Tech News",
         }}
@@ -133,6 +137,7 @@ function TabsNavigator() {
   );
 }
 
+// Function for waiting for fonts to load
 export default function App() {
   const [loaded] = Font.useFonts({
     Light: require("./assets/fonts/Light.ttf"),

@@ -3,6 +3,8 @@ import NewsItem from "./NewsItem";
 import Colors from "../../constants/colors";
 
 export default function List(props) {
+
+  // Function to render news item data
   function renderNewsItem(itemData) {
     const newsItemProps = {
       id: itemData.item.id,
@@ -17,6 +19,8 @@ export default function List(props) {
     };
     return <NewsItem {...newsItemProps} />;
   }
+
+  // Display flatlist of news items
 
   return (
     <View style={styles.container}>

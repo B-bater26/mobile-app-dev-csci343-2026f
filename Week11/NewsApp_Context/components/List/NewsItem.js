@@ -3,8 +3,10 @@ import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import Colors from "../../constants/colors";
 
 export default function NewsItem(props) {
+  // Navigation object for navigating on News Screens
   const navigation = useNavigation();
 
+  // Selected news handler for handling news navigation
   function selectedListHandler() {
     navigation.navigate("NewsDetail", {
       id: props.id,

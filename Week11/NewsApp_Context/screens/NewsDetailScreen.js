@@ -7,11 +7,14 @@ import { useContext } from "react";
 import { FavoritesContext } from "../store/context/bookmarks-context";
 
 export default function NewsDetailScreen(props) {
+  // Get context from Bookmarks
   const favoriteNewsCtx = useContext(FavoritesContext);
 
+  // Create route to newsId and get that news item
   const newsid = props.route.params.id;
   const selectedNews = NEWS.find((news) => news.id === newsid);
 
+  // Enable favoriting the news
   const newsIsFavorite = favoriteNewsCtx.ids.includes(newsid);
 
   function changeFavoriteStatusHandler() {
@@ -22,7 +25,7 @@ export default function NewsDetailScreen(props) {
     }
   }
 
-
+  // Create header to go back to news
   useLayoutEffect(() => {
     props.navigation.setOptions({
       title: "Back to News",

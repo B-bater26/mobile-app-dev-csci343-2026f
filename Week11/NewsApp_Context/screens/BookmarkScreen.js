@@ -6,11 +6,13 @@ import List from "../components/List/List";
 import Colors from "../constants/colors";
 
 export default function BookmarkScreen() {
+  // Get context for bookmarked news
   const favoriteNewsCtx = useContext(FavoritesContext);
   const favoriteNews = NEWS.filter((newsItem) => {
     return favoriteNewsCtx.ids.includes(newsItem.id);
   });
 
+  // If there are no bookmarks, tell the user to bookmark
   if (favoriteNews.length === 0) {
     return (
       <View style={styles.container}>
@@ -32,8 +34,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
-    color: Colors.primary300
-  }
+    color: Colors.primary300,
+  },
 });

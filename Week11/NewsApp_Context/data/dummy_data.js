@@ -1,5 +1,17 @@
 import News from "../models/news";
 
+/*
+Dummy data for news items. All news items were made up by me.
+id,
+category,
+headline,
+date,
+author,
+agency,
+description
+
+*/
+
 export const NEWS = [
   new News(
     1,

@@ -1,12 +1,14 @@
 import { createContext, useState } from "react";
 
+// Send ids of added and removed favorites
 export const FavoritesContext = createContext({
   ids: [],
   addFavorite: (id) => {},
   removeFavorite: (id) => {},
 });
 
-export default function FacoritesContextProvider({ children }) {
+// Context for favoriting states
+export default function FavoritesContextProvider({ children }) {
   const [favoriteIds, setFavoriteIds] = useState([]);
 
   function addFavorite(id) {
