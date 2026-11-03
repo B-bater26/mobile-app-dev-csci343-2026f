@@ -19,7 +19,7 @@ import BookmarkScreen from "./screens/BookmarkScreen";
 import USNewsScreen from "./screens/USNewsScreen";
 import WorldNewsScreen from "./screens/WorldNewsScreen";
 import TechNewsScreen from "./screens/TechNewsScreen";
-import FavoriteContextProvider from "./store/context/favorite-context";
+import FavoriteContextProvider from "./store/context/bookmarks-context";
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({

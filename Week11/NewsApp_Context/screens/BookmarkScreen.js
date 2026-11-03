@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { FavoritesContext } from "../store/context/favorites-context";
+import { FavoritesContext } from "../store/context/bookmarks-context";
 import { useContext } from "react";
 import { NEWS } from "../data/dummy_data";
 import List from "../components/List/List";

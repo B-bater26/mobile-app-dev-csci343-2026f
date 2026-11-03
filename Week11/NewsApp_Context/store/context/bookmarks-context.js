@@ -22,7 +22,7 @@ export default function FacoritesContextProvider({ children }) {
   }
 
   const value = {
-    ids: favproteIds,
+    ids: favoriteIds,
     addFavorite: addFavorite,
     removeFavorite: removeFavorite,
   };

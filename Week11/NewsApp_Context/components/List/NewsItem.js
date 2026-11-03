@@ -15,7 +15,7 @@ export default function NewsItem(props) {
     <View
       style={[
         styles.itemContainer,
-        { backGroundColor: props.listIndex % 2 == 0 ? "#CCC" : "#fff" },
+        { backgroundColor: props.listIndex % 2 == 0 ? "#101933" : "#222d42" },
       ]}
     >
       <Pressable onPress={selectedListHandler} >

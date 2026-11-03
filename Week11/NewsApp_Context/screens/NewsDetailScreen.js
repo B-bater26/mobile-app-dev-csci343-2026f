@@ -4,7 +4,7 @@ import { useLayoutEffect, useState } from "react";
 import Colors from "../constants/colors";
 import BookmarkButton from "../components/BookmarkButton";
 import { useContext } from "react";
-import { FavoritesContext } from "../store/context/favorites-context";
+import { FavoritesContext } from "../store/context/bookmarks-context";
 
 export default function NewsDetailScreen(props) {
   const favoriteNewsCtx = useContext(FavoritesContext);
@@ -12,11 +12,11 @@ export default function NewsDetailScreen(props) {
   const newsid = props.route.params.id;
   const selectedNews = NEWS.find((news) => news.id === newsid);
 
-  const newsIsFavorite = favoriteListingCtx.ids.includes(newsid);
+  const newsIsFavorite = favoriteNewsCtx.ids.includes(newsid);
 
   function changeFavoriteStatusHandler() {
     if (newsIsFavorite) {
-      favoriteNewsCtx.removeFavoirte(newsid);
+      favoriteNewsCtx.removeFavorite(newsid);
     } else {
       favoriteNewsCtx.addFavorite(newsid);
     }
