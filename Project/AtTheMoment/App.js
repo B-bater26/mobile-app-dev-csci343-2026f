@@ -19,6 +19,7 @@ import MemoryCalendarScreen from "./screens/MemoryCalendarScreen";
 import MemoryCreationScreen from "./screens/MemoryCreationScreen";
 import MemoryListScreen from "./screens/MemoryListScreen";
 import CoreMemoriesScreen from "./screens/CoreMemoriesScreen";
+import CameraModal from "./modals/CameraModal";
 
 // Default App Settings
 SplashScreen.preventAutoHideAsync();
@@ -170,14 +171,21 @@ export default function App() {
             }}
           />
           <Stack.Group
-            navigationley="Modal"
+            navigationKey="Modal"
             screenOptions={{
-              presentation: 'modal',
+              presentation: "modal",
             }}
-            >
-              <Stack.Screen name="DetailModal" component={MemoryDetailsScreen} />
+          >
+            <Stack.Screen name="MemoryDetail" component={MemoryDetailsScreen} />
           </Stack.Group>
-          <Stack.Screen name="MemoryDetail" component={MemoryDetailsScreen} />
+          <Stack.Group
+            navigationKey="ModalCam"
+            screenOptions={{
+              presentation: "modal",
+            }}
+          >
+            <Stack.Screen name="CameraModal" component={CameraModal} />
+          </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>
     </>
