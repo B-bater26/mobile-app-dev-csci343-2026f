@@ -14,6 +14,11 @@ import {
 } from "@expo/vector-icons";
 
 import Colors from "./constants/colors";
+import MemoryDetailsScreen from "./modals/MemoryDetailModal";
+import MemoryCalendarScreen from "./screens/MemoryCalendarScreen";
+import MemoryCreationScreen from "./screens/MemoryCreationScreen";
+import MemoryListScreen from "./screens/MemoryListScreen";
+import CoreMemoriesScreen from "./screens/CoreMemoriesScreen";
 
 // Default App Settings
 SplashScreen.preventAutoHideAsync();
@@ -164,7 +169,15 @@ export default function App() {
               headerShown: false,
             }}
           />
-          <Stack.Screen name="MemoryDetails" component={MemoryDetailsScreen} />
+          <Stack.Group
+            navigationley="Modal"
+            screenOptions={{
+              presentation: 'modal',
+            }}
+            >
+              <Stack.Screen name="DetailModal" component={MemoryDetailsScreen} />
+          </Stack.Group>
+          <Stack.Screen name="MemoryDetail" component={MemoryDetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

@@ -1,0 +1,71 @@
+import { View, Text, StyleSheet, Image } from "react-native"
+import { MEMORIES } from "../data/memoryData";
+import { useLayoutEffect, useState } from "react";
+import Colors from "../constants/colors";
+
+
+export default function MemoryDetailsScreen(props) {
+    // Set up ID information
+    const memoryid = props.route.params.id;
+    const selectedMemory = MEMORIES.find((memory) => memory.id === memoryid);
+
+    return (
+        <View>
+            <View style={styles.imageContainer}>
+                <Image style={styles.image} source= {{ uri: selectedMemory.imageUrl }} />
+            </View>
+
+            <View style={styles.infoContainer}>
+                <Text style={styles.header}>{selectedMemory.header}</Text>
+            </View>
+
+            <View>
+                <Text>{selectedMemory.date}</Text>
+            </View>
+
+            <View>
+                <Text>{selectedMemory.moods}</Text>
+            </View>
+
+            <View>
+                <Text>{selectedMemory.body}</Text>
+            </View>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+  itemContainer: {
+    paddingHorizontal: 5,
+    paddingTop: 5,
+    marginBottom: 30,
+    borderRadius: 7,
+    backgroundColor: Colors.primary300o5,
+  },
+  imageContainer: {
+    marginVertical: 10,
+    height: 300,
+  },
+  image: {
+    height: "100%",
+    resizeMode: "cover",
+    borderRadius: 7,
+  },
+  infoContainer: {
+    flex: 1,
+    alignItems: "center",
+    color: "white",
+  },
+  header: {
+    fontSize: 35,
+    fontFamily: "Normal",
+    paddingBottom: 2,
+    color: "white",
+  },
+  date: {
+    fontSize: 25,
+    fontFamily: "Normal",
+    paddingBottom: 5,
+    color: "white",
+  },
+});

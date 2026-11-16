@@ -5,11 +5,20 @@ import Colors from "../../constants/colors";
 export default function List(props) {
   // Function that renders memories from item data
   function renderMemoryItem(itemData) {
-    const newsItemProps = {};
-    return <MemoryItem {...newsItemProps} />;
+    const memoryItemProps = {
+      id: itemData.item.id,
+      header: itemData.item.header,
+      date: itemData.item.date,
+      moods: itemData.item.moods,
+      body: itemData.item.body,
+      imageUrl: itemData.item.imageUrl,
+      listIndex: itemData.index
+    };
+    return <MemoryItem {...memoryItemProps} />;
   }
 
   return (
+    // REturn a FlatList of memory items
     <View style={styles.container}>
       <FlatList
         data={props.items}

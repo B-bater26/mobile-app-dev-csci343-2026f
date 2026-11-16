@@ -1,13 +1,12 @@
-class Memroies {
-    constructor(id, type, header, date, moods, body, imageUrl) {
+class Memories {
+    constructor(id, header, date, moods, body, imageUrl) {
         this.id = id;
-        this.type = type;
         this.header = header;
         this.date = date;
         this.moods = moods;
-        this.body = body,
-        this.iamgeUrl = imageUrl;
+        this.body = body;
+        this.imageUrl = imageUrl;
     }
 }
 
-export default Memroies;
+export default Memories;

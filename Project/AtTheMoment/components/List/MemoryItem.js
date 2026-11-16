@@ -28,12 +28,48 @@ export default function MemoryItem(props) {
               uri: props.imageUrl,
             }}
           />
-          <View style={styles.infoContainer}>
-            <Text style={styles.header}>{props.header}</Text>
-            <Text style={styles.date}>{props.date}</Text>
-          </View>
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.header}>{props.header}</Text>
+          <Text style={styles.date}>{props.date}</Text>
         </View>
       </Pressable>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  itemContainer: {
+    paddingHorizontal: 5,
+    paddingTop: 5,
+    marginBottom: 30,
+    borderRadius: 7,
+    backgroundColor: Colors.primary300o5,
+  },
+  imageContainer: {
+    marginVertical: 10,
+    height: 300,
+  },
+  image: {
+    height: "100%",
+    resizeMode: "cover",
+    borderRadius: 7,
+  },
+  infoContainer: {
+    flex: 1,
+    alignItems: "center",
+    color: "white",
+  },
+  header: {
+    fontSize: 35,
+    fontFamily: "Normal",
+    paddingBottom: 2,
+    color: "white",
+  },
+  date: {
+    fontSize: 25,
+    fontFamily: "Normal",
+    paddingBottom: 5,
+    color: "white",
+  },
+});
