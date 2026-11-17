@@ -67,10 +67,19 @@ export default function MemoryCreationScreen(props) {
     [],
   );
 
-  // Camera Modal Handler
+  // Camera Modal and Return Handlers for Navigation
   const navigation = useNavigation();
+
   function cameraHandler() {
     navigation.navigate("CameraModal");
+  }
+
+  function returnHandler() {
+    if (memoryTitle.trim().length > 0) {
+      navigation.navigate("MemoryList");
+    } else {
+
+    }
   }
 
   // Return input areas for screen
@@ -108,8 +117,20 @@ export default function MemoryCreationScreen(props) {
         />
       </View>
       <View>
-        <Pressable android_ripple={{ color: Colors.accent800 }} onPress={cameraHandler}>
-          <Text>Camera</Text>
+        <Pressable
+          android_ripple={{ color: Colors.accent800 }}
+          onPress={cameraHandler}
+        >
+          <Text>Take Memory Picture</Text>
+        </Pressable>
+      </View>
+
+      <View>
+        <Pressable
+          android_ripple={{ color: Colors.accent800 }}
+          onPress={returnHandler}
+        >
+          <Text>Create Memory</Text>
         </Pressable>
       </View>
     </View>
