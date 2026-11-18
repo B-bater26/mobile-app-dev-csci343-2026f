@@ -20,6 +20,7 @@ import MemoryCreationScreen from "./screens/MemoryCreationScreen";
 import MemoryListScreen from "./screens/MemoryListScreen";
 import CoreMemoriesScreen from "./screens/CoreMemoriesScreen";
 import CameraModal from "./modals/CameraModal";
+import CoreContextProvider from "./store/context/core-context";
 
 // Default App Settings
 SplashScreen.preventAutoHideAsync();
@@ -154,40 +155,45 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="DrawerScreen"
-          screenOptions={{
-            headerTintColor: Colors.primary300,
-            headerStyle: { backgroundColor: Colors.primary500 },
-            contentStyle: { backgroundColor: "black" },
-          }}
-        >
-          <Stack.Screen
-            name="DrawerScreen"
-            component={DrawerNavigator}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Group
-            navigationKey="Modal"
+      <CoreContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="DrawerScreen"
             screenOptions={{
-              presentation: "modal",
+              headerTintColor: Colors.primary300,
+              headerStyle: { backgroundColor: Colors.primary500 },
+              contentStyle: { backgroundColor: "black" },
             }}
           >
-            <Stack.Screen name="MemoryDetail" component={MemoryDetailsScreen} />
-          </Stack.Group>
-          <Stack.Group
-            navigationKey="ModalCam"
-            screenOptions={{
-              presentation: "modal",
-            }}
-          >
-            <Stack.Screen name="CameraModal" component={CameraModal} />
-          </Stack.Group>
-        </Stack.Navigator>
-      </NavigationContainer>
+            <Stack.Screen
+              name="DrawerScreen"
+              component={DrawerNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Group
+              navigationKey="Modal"
+              screenOptions={{
+                presentation: "modal",
+              }}
+            >
+              <Stack.Screen
+                name="MemoryDetail"
+                component={MemoryDetailsScreen}
+              />
+            </Stack.Group>
+            <Stack.Group
+              navigationKey="ModalCam"
+              screenOptions={{
+                presentation: "modal",
+              }}
+            >
+              <Stack.Screen name="CameraModal" component={CameraModal} />
+            </Stack.Group>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </CoreContextProvider>
     </>
   );
 }

@@ -114,6 +114,7 @@ export default function MemoryCreationScreen(props) {
           placeholder="Describe Your Memory"
           style={styles.memoryText}
           readOnly={!entry}
+          disabled={!entry}
         />
       </View>
       <View>

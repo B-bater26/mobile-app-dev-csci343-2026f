@@ -1,37 +1,70 @@
-import { View, Text, StyleSheet, Image } from "react-native"
+import { View, Text, StyleSheet, Image } from "react-native";
 import { MEMORIES } from "../data/memoryData";
 import { useLayoutEffect, useState } from "react";
+import HeartButton from "../components/HeartButton";
+import { useContext } from "react";
+import { CoreContext } from "../store/context/core-context";
+
 import Colors from "../constants/colors";
 
-
 export default function MemoryDetailsScreen(props) {
-    // Set up ID information
-    const memoryid = props.route.params.id;
-    const selectedMemory = MEMORIES.find((memory) => memory.id === memoryid);
+  // Grab context from Cores
+  const coreMemoriesCtx = useContext(CoreContext);
 
-    return (
-        <View>
-            <View style={styles.imageContainer}>
-                <Image style={styles.image} source= {{ uri: selectedMemory.imageUrl }} />
-            </View>
+  // Set up ID information
+  const memoryid = props.route.params.id;
+  const selectedMemory = MEMORIES.find((memory) => memory.id === memoryid);
 
-            <View style={styles.infoContainer}>
-                <Text style={styles.header}>{selectedMemory.header}</Text>
-            </View>
+  // Determine if Core
+  const memoryIsCore = coreMemoriesCtx.ids.includes(memoryid);
 
-            <View>
-                <Text>{selectedMemory.date}</Text>
-            </View>
+  // Handle changes in core memories
+  function changeCoreStatusHandler() {
+    if (memoryIsCore) {
+      coreMemoriesCtx.removeCore(memoryid);
+    } else {
+      coreMemoriesCtx.addCore(memoryid);
+    }
+  }
 
-            <View>
-                <Text>{selectedMemory.moods}</Text>
-            </View>
+  // Header and Heart Button Context
+  useLayoutEffect(() => {
+    props.navigation.setOptions({
+      title: "Return to Memories",
+      headerRight: () => {
+        return (
+          <HeartButton
+            isCore={memoryIsCore}
+            onPress={changeCoreStatusHandler}
+          />
+        );
+      },
+    });
+  }, [props.navigation, changeCoreStatusHandler]);
 
-            <View>
-                <Text>{selectedMemory.body}</Text>
-            </View>
-        </View>
-    )
+  return (
+    <View>
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={{ uri: selectedMemory.imageUrl }} />
+      </View>
+
+      <View style={styles.infoContainer}>
+        <Text style={styles.header}>{selectedMemory.header}</Text>
+      </View>
+
+      <View>
+        <Text>{selectedMemory.date}</Text>
+      </View>
+
+      <View>
+        <Text>{selectedMemory.moods}</Text>
+      </View>
+
+      <View>
+        <Text>{selectedMemory.body}</Text>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
