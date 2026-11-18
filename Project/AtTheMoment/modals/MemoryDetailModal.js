@@ -43,7 +43,7 @@ export default function MemoryDetailsScreen(props) {
   }, [props.navigation, changeCoreStatusHandler]);
 
   return (
-    <View>
+    <View style={styles.itemContainer}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={{ uri: selectedMemory.imageUrl }} />
       </View>
@@ -52,16 +52,13 @@ export default function MemoryDetailsScreen(props) {
         <Text style={styles.header}>{selectedMemory.header}</Text>
       </View>
 
-      <View>
-        <Text>{selectedMemory.date}</Text>
+      <View style={styles.infoContainer}>
+        <Text style={styles.date}>{selectedMemory.date}</Text>
+        <Text style={styles.mood}>{selectedMemory.moods}</Text>
       </View>
 
-      <View>
-        <Text>{selectedMemory.moods}</Text>
-      </View>
-
-      <View>
-        <Text>{selectedMemory.body}</Text>
+      <View style={styles.infoContainer}>
+        <Text style={styles.body}>{selectedMemory.body}</Text>
       </View>
     </View>
   );
@@ -73,7 +70,8 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     marginBottom: 30,
     borderRadius: 7,
-    backgroundColor: Colors.primary300o5,
+    backgroundColor: Colors.accent300,
+    flex: 1
   },
   imageContainer: {
     marginVertical: 10,
@@ -88,6 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     color: "white",
+    backgroundColor: Colors.accent500,
   },
   header: {
     fontSize: 35,
@@ -96,9 +95,22 @@ const styles = StyleSheet.create({
     color: "white",
   },
   date: {
+    fontSize: 30,
+    fontFamily: "Normal",
+    paddingBottom: 5,
+    color: "white",
+  },
+  mood: {
     fontSize: 25,
     fontFamily: "Normal",
     paddingBottom: 5,
     color: "white",
   },
+  body: {
+    fontSize: 15,
+    fontFamily: "Normal",
+    paddingBottom: 5,
+    color: "white",
+    width: "50%"
+  }
 });

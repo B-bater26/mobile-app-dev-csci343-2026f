@@ -40,17 +40,17 @@ function DrawerNavigator() {
     <Drawer.Navigator
       initialRouteName="Memories"
       screenOptions={{
-        headerStyle: { backgroundColor: Colors.accent300 },
+        headerStyle: { backgroundColor: Colors.primary800 },
         headerTintColor: "white",
         headerTitleStyle: {
           fontFamily: "Text",
           fontSize: 40,
           color: Colors.accent300,
         },
-        sceneContainerStyle: { backgroundColor: Colors.primary500 },
-        drawerContentStyle: { backgroundColor: Colors.primary300 },
+        sceneContainerStyle: { backgroundColor: Colors.accent500 },
+        drawerContentStyle: { backgroundColor: Colors.accent500 },
         drawerInactiveTintColor: Colors.primary300,
-        drawerActiveTintColor: Colors.accent300,
+        drawerActiveTintColor: Colors.primary300,
         drawerActiveBackgroundColor: Colors.primary800,
       }}
     >
@@ -73,7 +73,7 @@ function DrawerNavigator() {
           title: "Core Memories",
           drawerLabel: "Core Memories",
           drawerIcon: ({ color, size }) => (
-            <Entypo name="user" color={color} size={size} />
+            <Entypo name="heart" color={color} size={size} />
           ),
         }}
       />
@@ -95,7 +95,7 @@ function TabsNavigator() {
           color: "white",
         },
         tabBarStyle: {
-          backgroundColor: Colors.primary500,
+          backgroundColor: Colors.primary800,
           color: "white",
         },
       }}
@@ -118,7 +118,7 @@ function TabsNavigator() {
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="list" color={color} size={size} />
+            <Entypo name="pencil" color={color} size={size} />
           ),
           tabBarLabel: "Memory Creation",
         }}
@@ -130,7 +130,7 @@ function TabsNavigator() {
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="list" color={color} size={size} />
+            <Entypo name="calendar" color={color} size={size} />
           ),
           tabBarLabel: "Memory Calendar",
         }}
@@ -160,7 +160,7 @@ export default function App() {
           <Stack.Navigator
             initialRouteName="DrawerScreen"
             screenOptions={{
-              headerTintColor: Colors.primary300,
+              headerTintColor: Colors.accent500,
               headerStyle: { backgroundColor: Colors.primary500 },
               contentStyle: { backgroundColor: "black" },
             }}

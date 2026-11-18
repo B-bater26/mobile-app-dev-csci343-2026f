@@ -15,11 +15,26 @@ export default function CoreMemoriesScreen() {
   // Without Core Memories, let use know they can Select Core Memories
   if (coreMemories.length === 0) {
     return (
-      <View>
-        <Text>You can save Core Memories using the Heart Button!</Text>
+      <View style={styles.container}>
+        <Text style={styles.text}>You can save Core Memories using the Heart Button!</Text>
       </View>
     );
   } else {
     return <List items={coreMemories} />;
   }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "black",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  text : {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: Colors.primary300
+  }
+})

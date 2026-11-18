@@ -4,7 +4,8 @@ import { useState } from "react";
 import { MEMORIES } from "../data/memoryData";
 import { Calendar } from "react-native-calendars";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import Colors from "../constants/colors";
 
 export default function MemoryCalendarScreen() {
   // Set up calendar date selector
@@ -35,9 +36,10 @@ export default function MemoryCalendarScreen() {
   }
 
   return (
-    <View>
-      <View>
+    <View style={styles.container}>
+      <View style={styles.calendarContainer}>
         <Calendar
+        style={styles.calendar}
           onDayPress={(day) => {
             const dayString = day.dateString;
             setSelected(dayString);
@@ -57,9 +59,32 @@ export default function MemoryCalendarScreen() {
           }}
         />
       </View>
-      <View>
-        <Text>{dateDisplay}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>{dateDisplay}</Text>
       </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "black",
+  },
+  calendarContainer: {
+    flex: 1
+  },
+  calendar : {
+    borderWidth: 1,
+    borderColor: Colors.primary500o8,
+    height: 350,
+    width: "100%"
+  },
+  textContainer: {
+    flex: 1
+  },
+  text: {
+    fontSize: 20,
+    color: Colors.primary300
+  }
+})

@@ -17,7 +17,7 @@ export default function MemoryItem(props) {
     <View
       style={[
         styles.itemContainer,
-        { backgroundColor: props.listIndex % 2 == 0 ? "#4d4d4d" : "#b1b1b1" },
+        { backgroundColor: props.listIndex % 2 == 0 ? "#dfc18a" : "#e9d9bc" },
       ]}
     >
       <Pressable onPress={selectedListHandler}>

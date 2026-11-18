@@ -84,15 +84,15 @@ export default function MemoryCreationScreen(props) {
 
   // Return input areas for screen
   return (
-    <View>
-      <View>
+    <View style={styles.rootContainer}>
+      <View style={styles.itemContainer}>
         <TextInput
           onChangeText={setMemoryTitle}
           placeholder="Title Your Memory"
           style={styles.memoryTitle}
         />
       </View>
-      <View>
+      <View style={styles.itemContainer}>
         <RadioGroup
           radioButtons={moodSelectors}
           onPress={setSelectedMood}
@@ -100,7 +100,7 @@ export default function MemoryCreationScreen(props) {
           layout="row"
         ></RadioGroup>
       </View>
-      <View>
+      <View style={styles.itemContainer}>
         <Switch
           onValueChange={onSetEntry}
           value={entry}
@@ -108,7 +108,7 @@ export default function MemoryCreationScreen(props) {
           trackColor={{ false: "#767577", true: "#d2ddf0" }}
         />
       </View>
-      <View>
+      <View style={styles.itemContainer}>
         <TextInput
           onChangeText={setMemoryText}
           placeholder="Describe Your Memory"
@@ -117,7 +117,7 @@ export default function MemoryCreationScreen(props) {
           disabled={!entry}
         />
       </View>
-      <View>
+      <View style={styles.itemContainer}>
         <Pressable
           android_ripple={{ color: Colors.accent800 }}
           onPress={cameraHandler}
@@ -126,7 +126,7 @@ export default function MemoryCreationScreen(props) {
         </Pressable>
       </View>
 
-      <View>
+      <View style={styles.itemContainer}>
         <Pressable
           android_ripple={{ color: Colors.accent800 }}
           onPress={returnHandler}
@@ -142,6 +142,9 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
   },
+  itemContainer: {
+    flex: 1
+  },
   memoryTitle: {
     color: Colors.primary300,
     fontWeight: "bold",
@@ -149,5 +152,5 @@ const styles = StyleSheet.create({
   },
   memoryText: {
     color: Colors.primary800,
-  },
+  }
 });

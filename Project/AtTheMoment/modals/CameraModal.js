@@ -22,8 +22,8 @@ export default function CameraModal() {
   // If permissions are not allowed, warn the user and offer a button
   if (!permission.granted) {
     return (
-      <View>
-        <Text>
+      <View style={styles.rootContainer}>
+        <Text style={styles.notifyMessage}>
           Please enable your camera permissions to take a memory picture
         </Text>
         <Button onPress={requestPermission} title="Grant Camera Permissions" />
@@ -39,14 +39,46 @@ export default function CameraModal() {
   // Return the Camera View
 
   return (
-    <View>
-      <CameraView facing={facing}>
-        <View>
-          <TouchableOpacity onPress={toggleCameraFace}>
-            <Entypo name="cycle" color="grey" />
+    <View style={styles.rootContainer}>
+      <CameraView style={styles.cameraStyle} facing={facing}>
+        <View style={styles.flipContainer}>
+          <TouchableOpacity style={styles.flipButton} onPress={toggleCameraFace}>
+            <Entypo name="cycle" size={30} color="grey" />
           </TouchableOpacity>
         </View>
       </CameraView>
     </View>
   );
 }
+
+
+const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    justifyContent: "center"
+  },
+  notifyMessage: {
+    textAlign: "center",
+    paddingBottom: 10,
+  },
+  cameraStyle: {
+    flex: 1
+  },
+  flipContainer: {
+    position: "absolute",
+    bottom: 64,
+    flexDirection: "row",
+    backgroundColor: "transparent",
+    width: "100%",
+    paddingHorizontal: 64
+  },
+  flipButton: {
+    flex: 1,
+    alignItems: "center"
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "white"
+  }
+})
