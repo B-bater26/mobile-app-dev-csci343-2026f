@@ -26,12 +26,8 @@ export default function CoreContextProvider({ children }) {
   const value = {
     ids: coreIds,
     addCore: addCore,
-    removeCore: removeCore
-  }
+    removeCore: removeCore,
+  };
 
-  return (
-    <CoreContext.Provider value={value}>
-        {children}
-    </CoreContext.Provider>
-  )
+  return <CoreContext.Provider value={value}>{children}</CoreContext.Provider>;
 }

@@ -1,17 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet} from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  Entypo,
-  MaterialIcons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
 import Colors from "./constants/colors";
 import MemoryDetailsScreen from "./modals/MemoryDetailModal";
@@ -43,7 +39,7 @@ function DrawerNavigator() {
         headerStyle: { backgroundColor: Colors.primary800 },
         headerTintColor: "white",
         headerTitleStyle: {
-          fontFamily: "Text",
+          fontFamily: "Normal",
           fontSize: 40,
           color: Colors.accent300,
         },
@@ -141,7 +137,9 @@ function TabsNavigator() {
 
 // Default App Functions
 export default function App() {
-  const [loaded] = Font.useFonts({});
+  const [loaded] = Font.useFonts({
+    Normal: require("./assets/fonts/AgravePro-VariableFont_wght.ttf"),
+  });
 
   useEffect(() => {
     if (loaded) {
@@ -198,11 +196,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

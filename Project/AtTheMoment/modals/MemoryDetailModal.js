@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import { MEMORIES } from "../data/memoryData";
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect } from "react";
 import HeartButton from "../components/HeartButton";
 import { useContext } from "react";
 import { CoreContext } from "../store/context/core-context";
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     borderRadius: 7,
     backgroundColor: Colors.accent300,
-    flex: 1
+    flex: 1,
   },
   imageContainer: {
     marginVertical: 10,
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
   infoContainer: {
     flex: 1,
     alignItems: "center",
-    color: "white",
     backgroundColor: Colors.accent500,
   },
   header: {
@@ -107,10 +106,10 @@ const styles = StyleSheet.create({
     color: "white",
   },
   body: {
-    fontSize: 15,
+    fontSize: 20,
     fontFamily: "Normal",
     paddingBottom: 5,
     color: "white",
-    width: "50%"
-  }
+    width: "75%",
+  },
 });

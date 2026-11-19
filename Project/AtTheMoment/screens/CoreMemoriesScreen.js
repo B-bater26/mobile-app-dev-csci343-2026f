@@ -16,7 +16,9 @@ export default function CoreMemoriesScreen() {
   if (coreMemories.length === 0) {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>You can save Core Memories using the Heart Button!</Text>
+        <Text style={styles.text}>
+          You can save Core Memories using the Heart Button!
+        </Text>
       </View>
     );
   } else {
@@ -24,17 +26,16 @@ export default function CoreMemoriesScreen() {
   }
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
-  text : {
+  text: {
     fontSize: 20,
     fontWeight: "bold",
-    color: Colors.primary300
-  }
-})
+    color: Colors.primary300,
+  },
+});

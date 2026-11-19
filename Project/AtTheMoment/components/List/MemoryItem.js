@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     marginBottom: 30,
     borderRadius: 7,
-    backgroundColor: Colors.primary300o5,
   },
   imageContainer: {
     marginVertical: 10,
@@ -58,7 +57,6 @@ const styles = StyleSheet.create({
   infoContainer: {
     flex: 1,
     alignItems: "center",
-    color: "white",
   },
   header: {
     fontSize: 35,

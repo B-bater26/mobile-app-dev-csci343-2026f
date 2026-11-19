@@ -1,6 +1,6 @@
 // This code was created using help from https://docs.expo.dev/versions/latest/sdk/camera/ (Found in /docs/resources_used)
 
-import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
+import { CameraView, useCameraPermissions } from "expo-camera";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import {
@@ -33,7 +33,7 @@ export default function CameraModal() {
 
   // Toggle the camera's facing direction
   function toggleCameraFace() {
-    setFace(current => (current === "back" ? "front" : "back"));
+    setFace((current) => (current === "back" ? "front" : "back"));
   }
 
   // Return the Camera View
@@ -42,7 +42,10 @@ export default function CameraModal() {
     <View style={styles.rootContainer}>
       <CameraView style={styles.cameraStyle} facing={facing}>
         <View style={styles.flipContainer}>
-          <TouchableOpacity style={styles.flipButton} onPress={toggleCameraFace}>
+          <TouchableOpacity
+            style={styles.flipButton}
+            onPress={toggleCameraFace}
+          >
             <Entypo name="cycle" size={30} color="grey" />
           </TouchableOpacity>
         </View>
@@ -51,18 +54,17 @@ export default function CameraModal() {
   );
 }
 
-
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   notifyMessage: {
     textAlign: "center",
     paddingBottom: 10,
   },
   cameraStyle: {
-    flex: 1
+    flex: 1,
   },
   flipContainer: {
     position: "absolute",
@@ -70,15 +72,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "transparent",
     width: "100%",
-    paddingHorizontal: 64
+    paddingHorizontal: 64,
   },
   flipButton: {
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
   },
   text: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "white"
-  }
-})
+    color: "white",
+  },
+});

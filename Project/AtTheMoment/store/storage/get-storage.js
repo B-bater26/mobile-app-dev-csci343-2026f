@@ -3,14 +3,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Reading data (Boilerplate for now)
 const getData = async () => {
-    try {
-        const value = await AsyncStorage.getItem('key');
-        if (value !== null) {
-            console.log(value)
-        }
-    } catch (e) {
-        console.log(`Error in Finding Saved Data: ${e}`);
+  try {
+    const value = await AsyncStorage.getItem("key");
+    if (value !== null) {
+      console.log(value);
     }
-}
+  } catch (e) {
+    console.log(`Error in Finding Saved Data: ${e}`);
+  }
+};
 
 export default getData;

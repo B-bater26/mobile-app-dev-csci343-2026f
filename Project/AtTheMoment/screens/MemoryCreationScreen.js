@@ -1,20 +1,19 @@
+// The alert hook was made with help from https://reactnative.dev/docs/alert, found is docs
+
 import {
   StyleSheet,
   View,
   Text,
-  Image,
-  ScrollView,
   TextInput,
   Pressable,
   Switch,
 } from "react-native";
 import { RadioGroup } from "react-native-radio-buttons-group";
-import { MEMORIES } from "../data/memoryData";
 import { useState, useMemo } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { Alert } from "react-native";
 
 import Colors from "../constants/colors";
-import List from "../components/List/List";
 
 export default function MemoryCreationScreen(props) {
   // Selection handlers
@@ -67,6 +66,18 @@ export default function MemoryCreationScreen(props) {
     [],
   );
 
+  // Create Alert Button
+  const alertEmpty = () =>
+    Alert.alert(
+      "Could Not Save Memory",
+      "Your memory must have a title to be saved.",
+      [
+        {
+          text: "Ok",
+        },
+      ],
+    );
+
   // Camera Modal and Return Handlers for Navigation
   const navigation = useNavigation();
 
@@ -78,7 +89,7 @@ export default function MemoryCreationScreen(props) {
     if (memoryTitle.trim().length > 0) {
       navigation.navigate("MemoryList");
     } else {
-
+      alertEmpty();
     }
   }
 
@@ -114,7 +125,7 @@ export default function MemoryCreationScreen(props) {
           placeholder="Describe Your Memory"
           style={styles.memoryText}
           readOnly={!entry}
-          disabled={!entry}
+          editable={!entry}
         />
       </View>
       <View style={styles.itemContainer}>
@@ -143,7 +154,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   itemContainer: {
-    flex: 1
+    flex: 1,
   },
   memoryTitle: {
     color: Colors.primary300,
@@ -152,5 +163,5 @@ const styles = StyleSheet.create({
   },
   memoryText: {
     color: Colors.primary800,
-  }
+  },
 });

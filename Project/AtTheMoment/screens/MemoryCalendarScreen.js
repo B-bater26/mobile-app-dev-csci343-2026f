@@ -39,13 +39,15 @@ export default function MemoryCalendarScreen() {
     <View style={styles.container}>
       <View style={styles.calendarContainer}>
         <Calendar
-        style={styles.calendar}
+          style={styles.calendar}
           onDayPress={(day) => {
             const dayString = day.dateString;
             setSelected(dayString);
             const memoryValidate = dateToMemoryHandler(dayString);
-            const phrase = memoryValidate ? "You have a memory on this day!\nHold the Date to Open It" : "You don't have a memory for this day."
-            setDateDisplay(`${dayString}: ${phrase}`)
+            const phrase = memoryValidate
+              ? "You have a memory on this day!\nHold the Date to Open It"
+              : "You don't have a memory for this day.";
+            setDateDisplay(`${dayString}: ${phrase}`);
           }}
           onDayLongPress={(day) => {
             const memory = dateToMemoryHandler(day.dateString);
@@ -72,19 +74,19 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
   calendarContainer: {
-    flex: 1
+    flex: 1,
   },
-  calendar : {
+  calendar: {
     borderWidth: 1,
     borderColor: Colors.primary500o8,
     height: 350,
-    width: "100%"
+    width: "100%",
   },
   textContainer: {
-    flex: 1
+    flex: 1,
   },
   text: {
     fontSize: 20,
-    color: Colors.primary300
-  }
-})
+    color: Colors.primary300,
+  },
+});
