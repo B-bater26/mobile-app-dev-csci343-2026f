@@ -1,7 +1,7 @@
 // This code was created using help from https://docs.expo.dev/versions/latest/sdk/camera/ (Found in /docs/resources_used)
 
 import { CameraView, useCameraPermissions } from "expo-camera";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import {
   Entypo,
@@ -13,6 +13,9 @@ export default function CameraModal() {
   // Set up states for camera
   const [facing, setFace] = useState("back");
   const [permission, requestPermission] = useCameraPermissions();
+  const [imageName, setImageName] = useState("");
+  const [photoBase64, setPhotoBase64] = useState(null);
+  const camera = useRef(null)
 
   // If permissions are not yet granted, return a blank view until granted
   if (!permission) {
@@ -36,17 +39,32 @@ export default function CameraModal() {
     setFace((current) => (current === "back" ? "front" : "back"));
   }
 
+  // Take Picture
+  const takePhoto = async () => {
+    if (camera.current) {
+      const photo = await camera.current.takePictureAsync({base64: true});
+      setImageName(photo.url);
+      setPhotoBase64(photo.base64)
+    }
+  };
+
   // Return the Camera View
 
   return (
     <View style={styles.rootContainer}>
-      <CameraView style={styles.cameraStyle} facing={facing}>
-        <View style={styles.flipContainer}>
+      <CameraView style={styles.cameraStyle} facing={facing} ref={camera}>
+        <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.flipButton}
             onPress={toggleCameraFace}
           >
             <Entypo name="cycle" size={30} color="grey" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.photoButton}
+            onPress={takePhoto}
+          >
+            <Entypo name="circle" size={30} color="grey" />
           </TouchableOpacity>
         </View>
       </CameraView>
@@ -66,7 +84,7 @@ const styles = StyleSheet.create({
   cameraStyle: {
     flex: 1,
   },
-  flipContainer: {
+  buttonContainer: {
     position: "absolute",
     bottom: 64,
     flexDirection: "row",

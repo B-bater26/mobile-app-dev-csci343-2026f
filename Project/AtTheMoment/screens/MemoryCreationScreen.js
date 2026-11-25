@@ -12,10 +12,16 @@ import { RadioGroup } from "react-native-radio-buttons-group";
 import { useState, useMemo } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
+import { MEMORIES } from "../data/memoryData";
+import Memories from "../models/memories";
 
 import Colors from "../constants/colors";
 
 export default function MemoryCreationScreen(props) {
+  // Set up date
+  const dateObj = new Date();
+  const currentDate = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
+
   // Selection handlers
   const [memoryTitle, setMemoryTitle] = useState("");
   const [memoryText, setMemoryText] = useState("");
@@ -85,11 +91,27 @@ export default function MemoryCreationScreen(props) {
     navigation.navigate("CameraModal");
   }
 
+  // If you have a title, create new Memory and return home
+
   function returnHandler() {
     if (memoryTitle.trim().length > 0) {
+      MEMORIES.push(
+        new Memories(
+          MEMORIES.length + 1,
+          `${memoryTitle}`,
+          `${currentDate}`,
+          `${moodSelectors[selectedMood].label}`,
+          `${memoryText}`,
+          "https://cdn.pixabay.com/photo/2016/11/23/14/45/coding-1853305_1280.jpg",
+        ),
+      );
+      setMemoryTitle("");
+      setMemoryText("");
+      setSelectedMood(0);
       navigation.navigate("MemoryList");
     } else {
       alertEmpty();
+      console.log(currentDate);
     }
   }
 
