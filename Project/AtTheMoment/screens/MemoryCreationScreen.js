@@ -1,4 +1,4 @@
-// The alert hook was made with help from https://reactnative.dev/docs/alert, found is docs
+// The alert hook was made with help from https://reactnative.dev/docs/alert and https://reactnavigation.org/docs/params/?config=dynamic, found is docs
 
 import {
   StyleSheet,
@@ -9,7 +9,7 @@ import {
   Switch,
 } from "react-native";
 import { RadioGroup } from "react-native-radio-buttons-group";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
 import { MEMORIES } from "../data/memoryData";
@@ -17,7 +17,7 @@ import Memories from "../models/memories";
 
 import Colors from "../constants/colors";
 
-export default function MemoryCreationScreen(props) {
+export default function MemoryCreationScreen({ route }) {
   // Set up date
   const dateObj = new Date();
   const currentDate = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
@@ -95,6 +95,7 @@ export default function MemoryCreationScreen(props) {
 
   function returnHandler() {
     if (memoryTitle.trim().length > 0) {
+      console.log("params:", route.params)
       MEMORIES.push(
         new Memories(
           MEMORIES.length + 1,
@@ -102,7 +103,7 @@ export default function MemoryCreationScreen(props) {
           `${currentDate}`,
           `${moodSelectors[selectedMood].label}`,
           `${memoryText}`,
-          "https://cdn.pixabay.com/photo/2016/11/23/14/45/coding-1853305_1280.jpg",
+          `${route.params.uri}`,
         ),
       );
       setMemoryTitle("");
@@ -147,7 +148,7 @@ export default function MemoryCreationScreen(props) {
           placeholder="Describe Your Memory"
           style={styles.memoryText}
           readOnly={!entry}
-          editable={!entry}
+          editable={entry}
         />
       </View>
       <View style={styles.itemContainer}>

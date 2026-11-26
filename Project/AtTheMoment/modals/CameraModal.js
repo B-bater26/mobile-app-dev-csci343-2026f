@@ -1,21 +1,22 @@
-// This code was created using help from https://docs.expo.dev/versions/latest/sdk/camera/ (Found in /docs/resources_used)
+// This code was created using help from https://docs.expo.dev/versions/latest/sdk/camera/ and https://haagahelia.github.io/mobilecourse/docs/ExpoSDK/camera/
+// and https://stackoverflow.com/questions/49804332/how-to-close-a-react-navigation-modal-with-multiple-screens-in-it and https://reactnavigation.org/docs/nesting-navigators/#navigating-to-a-screen-in-a-nested-navigator
+// (Found in /docs/resources_used)
 
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useState, useRef } from "react";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import {
-  Entypo,
-  MaterialIcons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/core";
 
 export default function CameraModal() {
   // Set up states for camera
   const [facing, setFace] = useState("back");
   const [permission, requestPermission] = useCameraPermissions();
-  const [imageName, setImageName] = useState("");
-  const [photoBase64, setPhotoBase64] = useState(null);
-  const camera = useRef(null)
+  const [imageUri, setImageUri] = useState("");
+  const camera = useRef(null);
+
+  // Navigation set up
+  const navigation = useNavigation();
 
   // If permissions are not yet granted, return a blank view until granted
   if (!permission) {
@@ -42,9 +43,15 @@ export default function CameraModal() {
   // Take Picture
   const takePhoto = async () => {
     if (camera.current) {
-      const photo = await camera.current.takePictureAsync({base64: true});
-      setImageName(photo.url);
-      setPhotoBase64(photo.base64)
+      const photo = await camera.current.takePictureAsync();
+      navigation.navigate(
+        "DrawerScreen",
+        {
+          screen: "Memories",
+          params: { screen: "MemoryCreation", params: { uri: photo.uri } },
+        }
+        
+      );
     }
   };
 
@@ -52,22 +59,15 @@ export default function CameraModal() {
 
   return (
     <View style={styles.rootContainer}>
-      <CameraView style={styles.cameraStyle} facing={facing} ref={camera}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.flipButton}
-            onPress={toggleCameraFace}
-          >
-            <Entypo name="cycle" size={30} color="grey" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.photoButton}
-            onPress={takePhoto}
-          >
-            <Entypo name="circle" size={30} color="grey" />
-          </TouchableOpacity>
-        </View>
-      </CameraView>
+      <CameraView style={styles.cameraStyle} facing={facing} ref={camera} />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.flipButton} onPress={toggleCameraFace}>
+          <Entypo name="cycle" size={30} color="grey" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.photoButton} onPress={takePhoto}>
+          <Entypo name="circle" size={30} color="grey" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
