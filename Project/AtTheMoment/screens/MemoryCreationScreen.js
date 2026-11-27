@@ -16,6 +16,8 @@ import { MEMORIES } from "../data/memoryData";
 import Memories from "../models/memories";
 
 import Colors from "../constants/colors";
+import storeData from "../store/storage/store-storage";
+import getData from "../store/storage/get-storage";
 
 export default function MemoryCreationScreen({ route }) {
   // Set up date
@@ -95,24 +97,22 @@ export default function MemoryCreationScreen({ route }) {
 
   function returnHandler() {
     if (memoryTitle.trim().length > 0) {
-      console.log("params:", route.params)
-      MEMORIES.push(
-        new Memories(
-          MEMORIES.length + 1,
-          `${memoryTitle}`,
-          `${currentDate}`,
-          `${moodSelectors[selectedMood].label}`,
-          `${memoryText}`,
-          `${route.params.uri}`,
-        ),
-      );
+      console.log("params:", route.params);
+
+      // Store Data at Date
+      storeData(`${currentDate}`, {
+        header: `${memoryTitle}`,
+        date: `${currentDate}`,
+        moods: `${moodSelectors[selectedMood].label}`,
+        body: `${memoryText}`,
+        imageUrl: `${route.params.uri}`,
+      });
       setMemoryTitle("");
       setMemoryText("");
       setSelectedMood(0);
       navigation.navigate("MemoryList");
     } else {
       alertEmpty();
-      console.log(currentDate);
     }
   }
 

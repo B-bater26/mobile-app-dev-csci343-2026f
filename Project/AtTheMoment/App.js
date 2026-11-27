@@ -118,6 +118,7 @@ function TabsNavigator() {
           ),
           tabBarLabel: "Memory Creation",
         }}
+        initialParams={{uri: null}}
       />
 
       <Tabs.Screen
